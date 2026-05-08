@@ -12,6 +12,8 @@ typedef struct _cube_3_state_t {
 } cube_3_state_t;
 
 int is_solved(cube_3_state_t state);
+char corner_to_color(uint8_t corner, uint8_t face);
+char edge_to_color(uint8_t edge, uint8_t face);
 void print_cube_3_state(cube_3_state_t state);
 
 #endif
