@@ -6,9 +6,11 @@
 #include "solver.h"
 
 int main(int argc, char **argv) {
-    print_cube_3_state((cube_3_state_t) {0});
+    cube_3_state_t cst = {.corners = CORNERS_SOLVED, .edges = EDGEDS_SOLVED};
+    print_cube_3_state(cst);
     if (argc != 3 && argc != 4) {
-        fprintf(stderr, "Error: Invalid number of arguments, requires 2 or 3, got %d\n", argc - 1);
+        printf("Error: Invalid number of arguments, requires 2 or 3, got %d\n", argc - 1);
+        return EXIT_FAILURE;
     }
     if (strcmp(argv[1], "solve") == 0) {
 

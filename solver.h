@@ -3,8 +3,13 @@
 
 #include <stdint.h>
 
-#define CORNERS_SOLVED 0b001010010000011000100000100000
+#define CORNERS_SOLVED 0b0011100110001010010000011000100000100000
 #define EDGEDS_SOLVED 0b010110101001001010000011100110001010010000011000100000100000
+
+static char colors[] = {'W', 'Y', 'R', 'O', 'G', 'B'};
+static uint8_t corner_color[8][3] = {
+    {'W', 'G', 'R'}, {'W', 'R', 'B'}, {'W', 'O', 'G'}, {'W', 'B', 'O'}, {'Y', 'R', 'G'}, {'Y', 'B', 'R'}, {'Y', 'G', 'O'}, {'Y', 'O', 'B'}
+};
 
 typedef struct _cube_3_state_t {
     uint64_t corners;
@@ -12,8 +17,12 @@ typedef struct _cube_3_state_t {
 } cube_3_state_t;
 
 int is_solved(cube_3_state_t state);
-char corner_to_color(uint8_t corner, uint8_t face);
-char edge_to_color(uint8_t edge, uint8_t face);
+char ctc(cube_3_state_t state, uint8_t pos_num, uint8_t face);
+char etc(cube_3_state_t state, uint8_t pos_num, uint8_t face);
+uint8_t get_corner(cube_3_state_t state, uint8_t pos_num);
+uint8_t get_edge(cube_3_state_t state, uint8_t pos_num);
 void print_cube_3_state(cube_3_state_t state);
+void print_binary64(uint64_t n);
+void print_binary8(uint8_t n);
 
 #endif
