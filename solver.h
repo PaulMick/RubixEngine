@@ -10,6 +10,9 @@ static char colors[] = {'W', 'Y', 'R', 'O', 'G', 'B'};
 static uint8_t corner_color[8][3] = {
     {'W', 'G', 'R'}, {'W', 'R', 'B'}, {'W', 'O', 'G'}, {'W', 'B', 'O'}, {'Y', 'R', 'G'}, {'Y', 'B', 'R'}, {'Y', 'G', 'O'}, {'Y', 'O', 'B'}
 };
+static uint8_t edge_color[12][2] = {
+    {'W', 'R'}, {'W', 'G'}, {'W', 'B'}, {'W', 'O'}, {'R', 'G'}, {'R', 'B'}, {'O', 'G'}, {'O', 'B'}, {'Y', 'R'}, {'Y', 'G'}, {'Y', 'B'}, {'Y', 'O'} 
+};
 
 typedef struct _cube_3_state_t {
     uint64_t corners;
