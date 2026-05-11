@@ -38,18 +38,18 @@ uint8_t get_edge(cube_3_state_t state, uint8_t pos_num) {
 }
 
 void print_cube_3_state(cube_3_state_t st) {
-    printf("   %c%c%c   \n", ctc(st, 6, 2), '-', ctc(st, 7, 1));
-    printf("   %c%c%c   \n", '-', 'O', '-');
-    printf("   %c%c%c   \n", ctc(st, 2, 1), '-', ctc(st, 3, 2));
-    printf("%c%c%c%c%c%c%c%c%c\n", ctc(st, 6, 1), '-', ctc(st, 2, 2), ctc(st, 2, 0), etc(st, 3, 0), ctc(st, 3, 0), ctc(st, 3, 1), '-', ctc(st, 7, 2));
-    printf("%c%c%c%c%c%c%c%c%c\n", '-', 'G', '-', etc(st, 1, 0), 'W', etc(st, 2, 0), '-', 'B', '-');
-    printf("%c%c%c%c%c%c%c%c%c\n", ctc(st, 4, 2), '-', ctc(st, 0, 1), ctc(st, 0, 0), etc(st, 0, 0), ctc(st, 1, 0), ctc(st, 1, 2), '-', ctc(st, 5, 1));
+    printf("   %c%c%c   \n", ctc(st, 6, 2), etc(st, 3, 1), ctc(st, 7, 1));
+    printf("   %c%c%c   \n", etc(st, 6, 0), 'O', etc(st, 7, 0));
+    printf("   %c%c%c   \n", ctc(st, 2, 1), etc(st, 11, 1), ctc(st, 3, 2));
+    printf("%c%c%c%c%c%c%c%c%c\n", ctc(st, 6, 1), etc(st, 1, 1), ctc(st, 2, 2), ctc(st, 2, 0), etc(st, 3, 0), ctc(st, 3, 0), ctc(st, 3, 1), etc(st, 2, 1), ctc(st, 7, 2));
+    printf("%c%c%c%c%c%c%c%c%c\n", etc(st, 6, 1), 'G', etc(st, 4, 1), etc(st, 1, 0), 'W', etc(st, 2, 0), etc(st, 5, 1), 'B', etc(st, 7, 1));
+    printf("%c%c%c%c%c%c%c%c%c\n", ctc(st, 4, 2), etc(st, 9, 1), ctc(st, 0, 1), ctc(st, 0, 0), etc(st, 0, 0), ctc(st, 1, 0), ctc(st, 1, 2), etc(st, 10, 1), ctc(st, 5, 1));
     printf("   %c%c%c   \n", ctc(st, 0, 2), etc(st, 0, 1), ctc(st, 1, 1));
-    printf("   %c%c%c   \n", '-', 'R', '-');
-    printf("   %c%c%c   \n", ctc(st, 4, 1), '-', ctc(st, 5, 2));
-    printf("   %c%c%c   \n", ctc(st, 4, 0), '-', ctc(st, 5, 0));
-    printf("   %c%c%c   \n", '-', 'Y', '-');
-    printf("   %c%c%c   \n", ctc(st, 6, 0), '-', ctc(st, 7, 0));
+    printf("   %c%c%c   \n", etc(st, 4, 0), 'R', etc(st, 5, 0));
+    printf("   %c%c%c   \n", ctc(st, 4, 1), etc(st, 8, 1), ctc(st, 5, 2));
+    printf("   %c%c%c   \n", ctc(st, 4, 0), etc(st, 8, 0), ctc(st, 5, 0));
+    printf("   %c%c%c   \n", etc(st, 9, 0), 'Y', etc(st, 10, 0));
+    printf("   %c%c%c   \n", ctc(st, 6, 0), etc(st, 11, 0), ctc(st, 7, 0));
 }
 
 void print_binary64(uint64_t n) {
