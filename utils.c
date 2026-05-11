@@ -31,10 +31,16 @@ char *ctc(cube_3_state_t state, uint8_t pos_num, uint8_t face) {
     // printf("\n");
     // printf("pos_num: %d, color: %c, corner: %d, rot: %d, face: %d\n", pos_num, color, corner, rot, face);
     // printf("ind2: %d\n", (rot + face) % 3);
-    char *s = malloc(sizeof(char) * 6);
-    sprintf(s, "%sm%c", color_codes[color_to_ind(color)], color);
-    // printf("%s\n", s);
-    s[5] = '\0';
+    char *s;
+    if (color == 'O') {
+        s = malloc(sizeof(char) * 18);
+        sprintf(s, "%sm%c", color_codes[color_to_ind(color)], color);
+        s[17] = '\0';
+    } else {
+        s = malloc(sizeof(char) * 8);
+        sprintf(s, "%sm%c", color_codes[color_to_ind(color)], color);
+        s[7] = '\0';
+    }
     return s;
 }
 
@@ -44,9 +50,16 @@ char *etc(cube_3_state_t state, uint8_t pos_num, uint8_t face) {
     char color = edge_color[edge & 0b1111][(rot + face) % 2];
     // printf("pos_num: %d, face: %d, rot: %d, color: %c\n", pos_num, face, rot, color);
     // printf("%d, %d\n", edge & 0b1111, (rot + face) % 2);
-    char *s = malloc(sizeof(char) * 6);
-    sprintf(s, "%sm%c", color_codes[color_to_ind(color)], color);
-    s[5] = '\0';
+    char *s;
+    if (color == 'O') {
+        s = malloc(sizeof(char) * 18);
+        sprintf(s, "%sm%c", color_codes[color_to_ind(color)], color);
+        s[17] = '\0';
+    } else {
+        s = malloc(sizeof(char) * 8);
+        sprintf(s, "%sm%c", color_codes[color_to_ind(color)], color);
+        s[7] = '\0';
+    }
     return s;
 }
 
@@ -59,18 +72,18 @@ uint8_t get_edge(cube_3_state_t state, uint8_t pos_num) {
 }
 
 void print_cube_3_state(cube_3_state_t st) {
-    printf("   \033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m   \n", ctc(st, 6, 2), etc(st, 3, 1), ctc(st, 7, 1));
-    printf("   \033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m   \n", etc(st, 6, 0), "202mO", etc(st, 7, 0));
-    printf("   \033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m   \n", ctc(st, 2, 1), etc(st, 11, 1), ctc(st, 3, 2));
-    printf("\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\n", ctc(st, 6, 1), etc(st, 1, 1), ctc(st, 2, 2), ctc(st, 2, 0), etc(st, 3, 0), ctc(st, 3, 0), ctc(st, 3, 1), etc(st, 2, 1), ctc(st, 7, 2));
-    printf("\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\n", etc(st, 6, 1), "032mG", etc(st, 4, 1), etc(st, 1, 0), "037mW", etc(st, 2, 0), etc(st, 5, 1), "034mB", etc(st, 7, 1));
-    printf("\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m\n", ctc(st, 4, 2), etc(st, 9, 1), ctc(st, 0, 1), ctc(st, 0, 0), etc(st, 0, 0), ctc(st, 1, 0), ctc(st, 1, 2), etc(st, 10, 1), ctc(st, 5, 1));
-    printf("   \033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m   \n", ctc(st, 0, 2), etc(st, 0, 1), ctc(st, 1, 1));
-    printf("   \033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m   \n", etc(st, 4, 0), "031mR", etc(st, 5, 0));
-    printf("   \033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m   \n", ctc(st, 4, 1), etc(st, 8, 1), ctc(st, 5, 2));
-    printf("   \033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m   \n", ctc(st, 4, 0), etc(st, 8, 0), ctc(st, 5, 0));
-    printf("   \033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m   \n", etc(st, 9, 0), "033mY", etc(st, 10, 0));
-    printf("   \033[0;%s\033[0m\033[0;%s\033[0m\033[0;%s\033[0m   \n", ctc(st, 6, 0), etc(st, 11, 0), ctc(st, 7, 0));
+    printf("   \033[%s\033[0m\033[%s\033[0m\033[%s\033[0m   \n", ctc(st, 6, 2), etc(st, 3, 1), ctc(st, 7, 1));
+    printf("   \033[%s\033[0m\033[%s\033[0m\033[%s\033[0m   \n", etc(st, 6, 0), "38;2;255;165;0mO", etc(st, 7, 0));
+    printf("   \033[%s\033[0m\033[%s\033[0m\033[%s\033[0m   \n", ctc(st, 2, 1), etc(st, 11, 1), ctc(st, 3, 2));
+    printf("\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\n", ctc(st, 6, 1), etc(st, 1, 1), ctc(st, 2, 2), ctc(st, 2, 0), etc(st, 3, 0), ctc(st, 3, 0), ctc(st, 3, 1), etc(st, 2, 1), ctc(st, 7, 2));
+    printf("\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\n", etc(st, 6, 1), "0;032mG", etc(st, 4, 1), etc(st, 1, 0), "0;037mW", etc(st, 2, 0), etc(st, 5, 1), "0;034mB", etc(st, 7, 1));
+    printf("\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\033[%s\033[0m\n", ctc(st, 4, 2), etc(st, 9, 1), ctc(st, 0, 1), ctc(st, 0, 0), etc(st, 0, 0), ctc(st, 1, 0), ctc(st, 1, 2), etc(st, 10, 1), ctc(st, 5, 1));
+    printf("   \033[%s\033[0m\033[%s\033[0m\033[%s\033[0m   \n", ctc(st, 0, 2), etc(st, 0, 1), ctc(st, 1, 1));
+    printf("   \033[%s\033[0m\033[%s\033[0m\033[%s\033[0m   \n", etc(st, 4, 0), "0;031mR", etc(st, 5, 0));
+    printf("   \033[%s\033[0m\033[%s\033[0m\033[%s\033[0m   \n", ctc(st, 4, 1), etc(st, 8, 1), ctc(st, 5, 2));
+    printf("   \033[%s\033[0m\033[%s\033[0m\033[%s\033[0m   \n", ctc(st, 4, 0), etc(st, 8, 0), ctc(st, 5, 0));
+    printf("   \033[%s\033[0m\033[%s\033[0m\033[%s\033[0m   \n", etc(st, 9, 0), "0;033mY", etc(st, 10, 0));
+    printf("   \033[%s\033[0m\033[%s\033[0m\033[%s\033[0m   \n", ctc(st, 6, 0), etc(st, 11, 0), ctc(st, 7, 0));
 }
 
 void print_binary64(uint64_t n) {
