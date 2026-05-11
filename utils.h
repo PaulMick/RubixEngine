@@ -41,7 +41,7 @@ void print_binary64(uint64_t n);
 void print_binary8(uint8_t n);
 uint8_t color_to_ind(char color);
 
-// cube_3_state_t make_move(cube_3_state_t st, enum move_t mv);
-// uint64_t get_masked(uint64_t n, uint8_t start_bit);
+cube_3_state_t make_move(cube_3_state_t st, enum move_t mv);
+uint64_t get_masked(uint64_t n, uint8_t start_bit);
 
 #endif
