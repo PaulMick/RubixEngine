@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "solver.h"
+#include "utils.h"
 
 int main(int argc, char **argv) {
     cube_3_state_t cst = {.corners = CORNERS_SOLVED, .edges = EDGEDS_SOLVED};
