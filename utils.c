@@ -31,8 +31,9 @@ char *ctc(cube_3_state_t state, uint8_t pos_num, uint8_t face) {
     // printf("\n");
     // printf("pos_num: %d, color: %c, corner: %d, rot: %d, face: %d\n", pos_num, color, corner, rot, face);
     // printf("ind2: %d\n", (rot + face) % 3);
-    char *s = "xxxmC";
+    char *s = malloc(sizeof(char) * 6);
     sprintf(s, "%sm%c", color_codes[color_to_ind(color)], color);
+    // printf("%s\n", s);
     s[5] = '\0';
     return s;
 }
@@ -43,7 +44,7 @@ char *etc(cube_3_state_t state, uint8_t pos_num, uint8_t face) {
     char color = edge_color[edge & 0b1111][(rot + face) % 2];
     // printf("pos_num: %d, face: %d, rot: %d, color: %c\n", pos_num, face, rot, color);
     // printf("%d, %d\n", edge & 0b1111, (rot + face) % 2);
-    char *s = "xxxmC";
+    char *s = malloc(sizeof(char) * 6);
     sprintf(s, "%sm%c", color_codes[color_to_ind(color)], color);
     s[5] = '\0';
     return s;

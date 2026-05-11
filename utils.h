@@ -13,8 +13,8 @@ static uint8_t corner_color[8][3] = {
 static uint8_t edge_color[12][2] = {
     {'W', 'R'}, {'W', 'G'}, {'W', 'B'}, {'W', 'O'}, {'R', 'G'}, {'R', 'B'}, {'O', 'G'}, {'O', 'B'}, {'Y', 'R'}, {'Y', 'G'}, {'Y', 'B'}, {'Y', 'O'} 
 };
-static char color_codes[6][3] = {
-    "037", "033", "031", "202", "032", "034"
+static char color_codes[6][4] = {
+    "037", "033", "031", "093", "032", "034"
 };
 
 typedef struct _cube_3_state_t {
