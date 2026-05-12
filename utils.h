@@ -29,7 +29,7 @@ typedef enum move_t {
     B = 9, BP = 10, B2 = 11,
     L = 12, LP = 13, L2 = 14,
     R = 15, RP = 16, R2 = 17,
-};
+} move_t;
 
 int is_solved(cube_3_state_t st);
 char *ctc(cube_3_state_t st, uint8_t pos_num, uint8_t face);
@@ -43,5 +43,6 @@ uint8_t color_to_ind(char color);
 
 cube_3_state_t make_move(cube_3_state_t st, enum move_t mv);
 uint64_t get_masked(uint64_t n, uint8_t start_bit);
+void set_masked(uint64_t *dest, uint64_t val, uint8_t ind);
 
 #endif

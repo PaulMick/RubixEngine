@@ -9,12 +9,18 @@ cube_3_state_t make_move(cube_3_state_t st, enum move_t mv) {
     uint64_t new_edges = st.edges;
     switch (mv) {
         case U:
+            print_binary64(new_corners);
+            printf("\n");
             set_masked(&new_corners, get_masked(st.corners, 0), 2);
+            print_binary64(new_corners);
+            printf("\n");
             set_masked(&new_corners, get_masked(st.corners, 1), 0);
             set_masked(&new_corners, get_masked(st.corners, 2), 3);
             set_masked(&new_corners, get_masked(st.corners, 3), 1);
+            break;
         default: return st;
     }
+    return (cube_3_state_t) {.corners = new_corners, .edges = new_edges};
 }
 
 uint64_t get_masked(uint64_t n, uint8_t ind) {
