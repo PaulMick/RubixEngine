@@ -39,14 +39,16 @@ cube_3_state_t make_move(cube_3_state_t st, enum move_t mv) {
             set_masked(&new_edges, get_masked(st.edges, 3), 0);
             break;
         case D:
+            print_binary64(new_corners);
             set_masked(&new_corners, get_masked(st.corners, 4), 6);
-            set_masked(&new_corners, get_masked(st.corners, 5), 4);
-            set_masked(&new_corners, get_masked(st.corners, 6), 7);
-            set_masked(&new_corners, get_masked(st.corners, 7), 5);
-            set_masked(&new_edges, get_masked(st.edges, 8), 9);
-            set_masked(&new_edges, get_masked(st.edges, 9), 11);
-            set_masked(&new_edges, get_masked(st.edges, 10), 8);
-            set_masked(&new_edges, get_masked(st.edges, 11), 10);
+            // set_masked(&new_corners, get_masked(st.corners, 5), 4);
+            // set_masked(&new_corners, get_masked(st.corners, 6), 7);
+            // set_masked(&new_corners, get_masked(st.corners, 7), 5);
+            // set_masked(&new_edges, get_masked(st.edges, 8), 9);
+            // set_masked(&new_edges, get_masked(st.edges, 9), 11);
+            // set_masked(&new_edges, get_masked(st.edges, 10), 8);
+            // set_masked(&new_edges, get_masked(st.edges, 11), 10);
+            print_binary64(new_corners);
             break;
         default: return st;
     }
@@ -58,7 +60,9 @@ uint8_t get_masked(uint64_t n, uint8_t ind) {
 }
 
 void set_masked(uint64_t *dest, uint8_t val, uint8_t ind) {
+    print_binary64(*dest);
     *dest = (*dest & (~(0b11111 << ind * 5))) | (val << ind * 5);
+    print_binary64(*dest);
 }
 
 int is_solved(cube_3_state_t state) {
@@ -116,7 +120,7 @@ uint8_t get_edge(cube_3_state_t state, uint8_t pos_num) {
 
 void print_cube_3_state(cube_3_state_t st) {
     char *cs[48];
-    cs[0] =  ctc(st, 6, 2);
+    cs[0] = ctc(st, 6, 2);
     cs[1] = etc(st, 11, 1);
     cs[2] = ctc(st, 7, 1);
     cs[3] = etc(st, 6, 0);
@@ -184,13 +188,18 @@ void print_cube_3_state(cube_3_state_t st) {
 void print_binary64(uint64_t n) {
     for (int i = 0; i < 64; i ++) {
         printf("%d", (int) (n >> 63 - i) & 1);
+        if ((63 - i) % 5 == 0) {
+            printf(" ");
+        }
     }
+    printf("\n");
 }
 
 void print_binary8(uint8_t n) {
     for (int i = 0; i < 8; i ++) {
         printf("%d", (n >> 7 - i) & 1);
     }
+    printf("\n");
 }
 
 uint8_t color_to_ind(char color) {
