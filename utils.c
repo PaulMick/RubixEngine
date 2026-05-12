@@ -9,14 +9,44 @@ cube_3_state_t make_move(cube_3_state_t st, enum move_t mv) {
     uint64_t new_edges = st.edges;
     switch (mv) {
         case U:
-            // print_binary64(new_corners);
-            // printf("\n");
             set_masked(&new_corners, get_masked(st.corners, 0), 2);
             set_masked(&new_corners, get_masked(st.corners, 1), 0);
             set_masked(&new_corners, get_masked(st.corners, 2), 3);
             set_masked(&new_corners, get_masked(st.corners, 3), 1);
-            // print_binary64(new_corners);
-            // printf("\n");
+            set_masked(&new_edges, get_masked(st.edges, 0), 1);
+            set_masked(&new_edges, get_masked(st.edges, 1), 3);
+            set_masked(&new_edges, get_masked(st.edges, 2), 0);
+            set_masked(&new_edges, get_masked(st.edges, 3), 2);
+            break;
+        case UP:
+            set_masked(&new_corners, get_masked(st.corners, 0), 1);
+            set_masked(&new_corners, get_masked(st.corners, 1), 3);
+            set_masked(&new_corners, get_masked(st.corners, 2), 0);
+            set_masked(&new_corners, get_masked(st.corners, 3), 2);
+            set_masked(&new_edges, get_masked(st.edges, 0), 2);
+            set_masked(&new_edges, get_masked(st.edges, 1), 0);
+            set_masked(&new_edges, get_masked(st.edges, 2), 3);
+            set_masked(&new_edges, get_masked(st.edges, 3), 1);
+            break;
+        case U2:
+            set_masked(&new_corners, get_masked(st.corners, 0), 3);
+            set_masked(&new_corners, get_masked(st.corners, 1), 2);
+            set_masked(&new_corners, get_masked(st.corners, 2), 1);
+            set_masked(&new_corners, get_masked(st.corners, 3), 0);
+            set_masked(&new_edges, get_masked(st.edges, 0), 3);
+            set_masked(&new_edges, get_masked(st.edges, 1), 2);
+            set_masked(&new_edges, get_masked(st.edges, 2), 1);
+            set_masked(&new_edges, get_masked(st.edges, 3), 0);
+            break;
+        case D:
+            set_masked(&new_corners, get_masked(st.corners, 4), 6);
+            set_masked(&new_corners, get_masked(st.corners, 5), 4);
+            set_masked(&new_corners, get_masked(st.corners, 6), 7);
+            set_masked(&new_corners, get_masked(st.corners, 7), 5);
+            set_masked(&new_edges, get_masked(st.edges, 8), 9);
+            set_masked(&new_edges, get_masked(st.edges, 9), 11);
+            set_masked(&new_edges, get_masked(st.edges, 10), 8);
+            set_masked(&new_edges, get_masked(st.edges, 11), 10);
             break;
         default: return st;
     }
@@ -87,27 +117,27 @@ uint8_t get_edge(cube_3_state_t state, uint8_t pos_num) {
 void print_cube_3_state(cube_3_state_t st) {
     char *cs[48];
     cs[0] =  ctc(st, 6, 2);
-    cs[1] = etc(st, 3, 1);
+    cs[1] = etc(st, 11, 1);
     cs[2] = ctc(st, 7, 1);
     cs[3] = etc(st, 6, 0);
     cs[4] = etc(st, 7, 0);
     cs[5] = ctc(st, 2, 1);
-    cs[6] = etc(st, 11, 1);
+    cs[6] = etc(st, 3, 1);
     cs[7] = ctc(st, 3, 2);
     cs[8] = ctc(st, 6, 1); 
-    cs[9] = etc(st, 1, 1);
+    cs[9] = etc(st, 6, 1);
     cs[10] = ctc(st, 2, 2);
     cs[11] = ctc(st, 2, 0);
     cs[12] = etc(st, 3, 0);
     cs[13] = ctc(st, 3, 0);
     cs[14] = ctc(st, 3, 1);
-    cs[15] = etc(st, 2, 1);
+    cs[15] = etc(st, 7, 1);
     cs[16] = ctc(st, 7, 2);
     cs[17] = etc(st, 6, 1);
-    cs[18] = etc(st, 4, 1);
+    cs[18] = etc(st, 1, 1);
     cs[19] = etc(st, 1, 0);
     cs[20] = etc(st, 2, 0);
-    cs[21] = etc(st, 5, 1);
+    cs[21] = etc(st, 2, 1);
     cs[22] = etc(st, 7, 1);
     cs[23] = ctc(st, 4, 2); 
     cs[24] = etc(st, 9, 1);
