@@ -42,7 +42,7 @@ void print_binary8(uint8_t n);
 uint8_t color_to_ind(char color);
 
 cube_3_state_t make_move(cube_3_state_t st, enum move_t mv);
-uint64_t get_masked(uint64_t n, uint8_t start_bit);
-void set_masked(uint64_t *dest, uint64_t val, uint8_t ind);
+uint8_t get_masked(uint64_t n, uint8_t start_bit);
+void set_masked(uint64_t *dest, uint8_t val, uint8_t ind);
 
 #endif

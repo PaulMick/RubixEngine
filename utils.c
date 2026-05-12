@@ -9,26 +9,26 @@ cube_3_state_t make_move(cube_3_state_t st, enum move_t mv) {
     uint64_t new_edges = st.edges;
     switch (mv) {
         case U:
-            print_binary64(new_corners);
-            printf("\n");
+            // print_binary64(new_corners);
+            // printf("\n");
             set_masked(&new_corners, get_masked(st.corners, 0), 2);
-            print_binary64(new_corners);
-            printf("\n");
             set_masked(&new_corners, get_masked(st.corners, 1), 0);
             set_masked(&new_corners, get_masked(st.corners, 2), 3);
             set_masked(&new_corners, get_masked(st.corners, 3), 1);
+            // print_binary64(new_corners);
+            // printf("\n");
             break;
         default: return st;
     }
     return (cube_3_state_t) {.corners = new_corners, .edges = new_edges};
 }
 
-uint64_t get_masked(uint64_t n, uint8_t ind) {
-    return n & (0b11111 << ind * 5);
+uint8_t get_masked(uint64_t n, uint8_t ind) {
+    return (n & (0b11111 << ind * 5)) >> ind * 5;
 }
 
-void set_masked(uint64_t *dest, uint64_t val, uint8_t ind) {
-    *dest = (*dest & (~(0b11111 << ind * 5))) | val;
+void set_masked(uint64_t *dest, uint8_t val, uint8_t ind) {
+    *dest = (*dest & (~(0b11111 << ind * 5))) | (val << ind * 5);
 }
 
 int is_solved(cube_3_state_t state) {
