@@ -160,6 +160,82 @@ cube_3_state_t make_move(cube_3_state_t st, enum move_t mv) {
             set_masked(&new_edges, get_masked(st.edges, 7), 6);
             set_masked(&new_edges, get_masked(st.edges, 11), 3);
             break;
+        case L:
+            set_masked(&new_corners, get_masked(st.corners, 0), 4);
+            set_masked(&new_corners, get_masked(st.corners, 2), 0);
+            set_masked(&new_corners, get_masked(st.corners, 4), 6);
+            set_masked(&new_corners, get_masked(st.corners, 6), 2);
+            add_corner_rot(&new_corners, 1, 0);
+            add_corner_rot(&new_corners, 2, 2);
+            add_corner_rot(&new_corners, 2, 4);
+            add_corner_rot(&new_corners, 1, 6);
+            set_masked(&new_edges, get_masked(st.edges, 1), 4);
+            set_masked(&new_edges, get_masked(st.edges, 4), 9);
+            set_masked(&new_edges, get_masked(st.edges, 6), 1);
+            set_masked(&new_edges, get_masked(st.edges, 9), 6);
+            break;
+        case LP:
+            set_masked(&new_corners, get_masked(st.corners, 4), 0);
+            set_masked(&new_corners, get_masked(st.corners, 0), 2);
+            set_masked(&new_corners, get_masked(st.corners, 6), 4);
+            set_masked(&new_corners, get_masked(st.corners, 2), 6);
+            add_corner_rot(&new_corners, 1, 0);
+            add_corner_rot(&new_corners, 2, 2);
+            add_corner_rot(&new_corners, 2, 4);
+            add_corner_rot(&new_corners, 1, 6);
+            set_masked(&new_edges, get_masked(st.edges, 4), 1);
+            set_masked(&new_edges, get_masked(st.edges, 9), 4);
+            set_masked(&new_edges, get_masked(st.edges, 1), 6);
+            set_masked(&new_edges, get_masked(st.edges, 6), 9);
+            break;
+        case L2:
+            set_masked(&new_corners, get_masked(st.corners, 0), 6);
+            set_masked(&new_corners, get_masked(st.corners, 2), 4);
+            set_masked(&new_corners, get_masked(st.corners, 4), 2);
+            set_masked(&new_corners, get_masked(st.corners, 6), 0);
+            set_masked(&new_edges, get_masked(st.edges, 1), 9);
+            set_masked(&new_edges, get_masked(st.edges, 4), 6);
+            set_masked(&new_edges, get_masked(st.edges, 6), 4);
+            set_masked(&new_edges, get_masked(st.edges, 9), 1);
+            break;
+        case R:
+            set_masked(&new_corners, get_masked(st.corners, 1), 3);
+            set_masked(&new_corners, get_masked(st.corners, 3), 7);
+            set_masked(&new_corners, get_masked(st.corners, 5), 1);
+            set_masked(&new_corners, get_masked(st.corners, 7), 5);
+            add_corner_rot(&new_corners, 2, 1);
+            add_corner_rot(&new_corners, 1, 3);
+            add_corner_rot(&new_corners, 1, 5);
+            add_corner_rot(&new_corners, 2, 7);
+            set_masked(&new_edges, get_masked(st.edges, 2), 7);
+            set_masked(&new_edges, get_masked(st.edges, 5), 2);
+            set_masked(&new_edges, get_masked(st.edges, 7), 10);
+            set_masked(&new_edges, get_masked(st.edges, 10), 5);
+            break;
+        case RP:
+            set_masked(&new_corners, get_masked(st.corners, 3), 1);
+            set_masked(&new_corners, get_masked(st.corners, 7), 3);
+            set_masked(&new_corners, get_masked(st.corners, 1), 5);
+            set_masked(&new_corners, get_masked(st.corners, 5), 7);
+            add_corner_rot(&new_corners, 2, 1);
+            add_corner_rot(&new_corners, 1, 3);
+            add_corner_rot(&new_corners, 1, 5);
+            add_corner_rot(&new_corners, 2, 7);
+            set_masked(&new_edges, get_masked(st.edges, 7), 2);
+            set_masked(&new_edges, get_masked(st.edges, 2), 5);
+            set_masked(&new_edges, get_masked(st.edges, 10), 7);
+            set_masked(&new_edges, get_masked(st.edges, 5), 10);
+            break;
+        case R2:
+            set_masked(&new_corners, get_masked(st.corners, 1), 7);
+            set_masked(&new_corners, get_masked(st.corners, 3), 5);
+            set_masked(&new_corners, get_masked(st.corners, 5), 3);
+            set_masked(&new_corners, get_masked(st.corners, 7), 1);
+            set_masked(&new_edges, get_masked(st.edges, 2), 10);
+            set_masked(&new_edges, get_masked(st.edges, 5), 7);
+            set_masked(&new_edges, get_masked(st.edges, 7), 5);
+            set_masked(&new_edges, get_masked(st.edges, 10), 2);
+            break;
         default: return st;
     }
     return (cube_3_state_t) {.corners = new_corners, .edges = new_edges};

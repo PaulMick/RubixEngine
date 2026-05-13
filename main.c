@@ -7,7 +7,7 @@
 
 int main(int argc, char **argv) {
     cube_3_state_t cst = {.corners = CORNERS_SOLVED, .edges = EDGEDS_SOLVED};
-    cst = make_move(cst, B2);
+    cst = make_move(cst, R2);
     print_cube_3_state(cst);
     if (argc != 3 && argc != 4) {
         printf("Error: Invalid number of arguments, requires 2 or 3, got %d\n", argc - 1);
