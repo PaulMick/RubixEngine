@@ -4,10 +4,13 @@
 #include <string.h>
 
 #include "utils.h"
+#include "solver.h"
 
 int main(int argc, char **argv) {
-    cube_3_state_t cst = {.corners = CORNERS_SOLVED, .edges = EDGEDS_SOLVED};
-    print_cube_3_state(cst);
+    srand(0);
+    cube_3_state_t st = scramble(30);
+    print_cube_3_state(st);
+
     if (argc != 3 && argc != 4) {
         printf("Error: Invalid number of arguments, requires 2 or 3, got %d\n", argc - 1);
         return EXIT_FAILURE;

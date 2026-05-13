@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define CORNERS_SOLVED 0b0011100110001010010000011000100000100000
-#define EDGEDS_SOLVED 0b010110101001001010000011100110001010010000011000100000100000
+#define EDGES_SOLVED 0b010110101001001010000011100110001010010000011000100000100000
 
 static char colors[] = {'W', 'Y', 'R', 'O', 'G', 'B'};
 static uint8_t corner_color[8][3] = {
@@ -46,5 +46,7 @@ uint8_t get_masked(uint64_t n, uint8_t start_bit);
 void set_masked(uint64_t *dest, uint8_t val, uint8_t ind);
 void add_corner_rot(uint64_t *dest, uint8_t rot, uint8_t ind);
 void add_edge_rot(uint64_t *dest, uint8_t rot, uint8_t ind);
+
+cube_3_state_t scramble(uint8_t moves);
 
 #endif

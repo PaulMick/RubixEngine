@@ -4,6 +4,14 @@
 
 #include "utils.h"
 
+cube_3_state_t scramble(uint8_t moves) {
+    cube_3_state_t st = {.corners = CORNERS_SOLVED, .edges = EDGES_SOLVED};
+    for (int i = 0; i < moves; i ++) {
+        st = make_move(st, rand() % 18);
+    }
+    return st;
+}
+
 cube_3_state_t make_move(cube_3_state_t st, enum move_t mv) {
     uint64_t new_corners = st.corners;
     uint64_t new_edges = st.edges;
@@ -264,7 +272,7 @@ void set_masked(uint64_t *dest, uint8_t val, uint8_t ind) {
 }
 
 int is_solved(cube_3_state_t state) {
-    return state.corners == CORNERS_SOLVED && state.edges == EDGEDS_SOLVED;
+    return state.corners == CORNERS_SOLVED && state.edges == EDGES_SOLVED;
 }
 
 char *ctc(cube_3_state_t state, uint8_t pos_num, uint8_t face) {
