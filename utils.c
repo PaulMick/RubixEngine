@@ -39,30 +39,152 @@ cube_3_state_t make_move(cube_3_state_t st, enum move_t mv) {
             set_masked(&new_edges, get_masked(st.edges, 3), 0);
             break;
         case D:
-            print_binary64(new_corners);
             set_masked(&new_corners, get_masked(st.corners, 4), 6);
-            // set_masked(&new_corners, get_masked(st.corners, 5), 4);
-            // set_masked(&new_corners, get_masked(st.corners, 6), 7);
-            // set_masked(&new_corners, get_masked(st.corners, 7), 5);
-            // set_masked(&new_edges, get_masked(st.edges, 8), 9);
-            // set_masked(&new_edges, get_masked(st.edges, 9), 11);
-            // set_masked(&new_edges, get_masked(st.edges, 10), 8);
-            // set_masked(&new_edges, get_masked(st.edges, 11), 10);
-            print_binary64(new_corners);
+            set_masked(&new_corners, get_masked(st.corners, 5), 4);
+            set_masked(&new_corners, get_masked(st.corners, 6), 7);
+            set_masked(&new_corners, get_masked(st.corners, 7), 5);
+            set_masked(&new_edges, get_masked(st.edges, 8), 9);
+            set_masked(&new_edges, get_masked(st.edges, 9), 11);
+            set_masked(&new_edges, get_masked(st.edges, 10), 8);
+            set_masked(&new_edges, get_masked(st.edges, 11), 10);
+            break;
+        case DP:
+            set_masked(&new_corners, get_masked(st.corners, 4), 5);
+            set_masked(&new_corners, get_masked(st.corners, 5), 7);
+            set_masked(&new_corners, get_masked(st.corners, 6), 4);
+            set_masked(&new_corners, get_masked(st.corners, 7), 6);
+            set_masked(&new_edges, get_masked(st.edges, 8), 10);
+            set_masked(&new_edges, get_masked(st.edges, 9), 8);
+            set_masked(&new_edges, get_masked(st.edges, 10), 11);
+            set_masked(&new_edges, get_masked(st.edges, 11), 9);
+            break;
+        case D2:
+            set_masked(&new_corners, get_masked(st.corners, 4), 7);
+            set_masked(&new_corners, get_masked(st.corners, 5), 6);
+            set_masked(&new_corners, get_masked(st.corners, 6), 5);
+            set_masked(&new_corners, get_masked(st.corners, 7), 4);
+            set_masked(&new_edges, get_masked(st.edges, 8), 11);
+            set_masked(&new_edges, get_masked(st.edges, 9), 10);
+            set_masked(&new_edges, get_masked(st.edges, 10), 9);
+            set_masked(&new_edges, get_masked(st.edges, 11), 8);
+            break;
+        case F:
+            set_masked(&new_corners, get_masked(st.corners, 0), 1);
+            add_corner_rot(&new_corners, 1, 1);
+            set_masked(&new_corners, get_masked(st.corners, 1), 5);
+            add_corner_rot(&new_corners, 2, 5);
+            set_masked(&new_corners, get_masked(st.corners, 4), 0);
+            add_corner_rot(&new_corners, 2, 0);
+            set_masked(&new_corners, get_masked(st.corners, 5), 4);
+            add_corner_rot(&new_corners, 1, 4);
+            set_masked(&new_edges, get_masked(st.edges, 0), 5);
+            add_edge_rot(&new_edges, 1, 5);
+            set_masked(&new_edges, get_masked(st.edges, 4), 0);
+            add_edge_rot(&new_edges, 1, 0);
+            set_masked(&new_edges, get_masked(st.edges, 5), 8);
+            add_edge_rot(&new_edges, 1, 8);
+            set_masked(&new_edges, get_masked(st.edges, 8), 4);
+            add_edge_rot(&new_edges, 1, 4);
+            break;
+        case FP:
+            set_masked(&new_corners, get_masked(st.corners, 1), 0);
+            set_masked(&new_corners, get_masked(st.corners, 5), 1);
+            set_masked(&new_corners, get_masked(st.corners, 0), 4);
+            set_masked(&new_corners, get_masked(st.corners, 4), 5);
+            add_corner_rot(&new_corners, 2, 0);
+            add_corner_rot(&new_corners, 1, 1);
+            add_corner_rot(&new_corners, 1, 4);
+            add_corner_rot(&new_corners, 2, 5);
+            set_masked(&new_edges, get_masked(st.edges, 5), 0);
+            set_masked(&new_edges, get_masked(st.edges, 0), 4);
+            set_masked(&new_edges, get_masked(st.edges, 8), 5);
+            set_masked(&new_edges, get_masked(st.edges, 4), 8);
+            add_edge_rot(&new_edges, 1, 0);
+            add_edge_rot(&new_edges, 1, 4);
+            add_edge_rot(&new_edges, 1, 5);
+            add_edge_rot(&new_edges, 1, 8);
+            break;
+        case F2:
+            set_masked(&new_corners, get_masked(st.corners, 0), 5);
+            set_masked(&new_corners, get_masked(st.corners, 1), 4);
+            set_masked(&new_corners, get_masked(st.corners, 4), 1);
+            set_masked(&new_corners, get_masked(st.corners, 5), 0);
+            set_masked(&new_edges, get_masked(st.edges, 0), 8);
+            set_masked(&new_edges, get_masked(st.edges, 4), 5);
+            set_masked(&new_edges, get_masked(st.edges, 5), 4);
+            set_masked(&new_edges, get_masked(st.edges, 8), 0);
+            break;
+        case B:
+            set_masked(&new_corners, get_masked(st.corners, 2), 6);
+            set_masked(&new_corners, get_masked(st.corners, 3), 2);
+            set_masked(&new_corners, get_masked(st.corners, 6), 7);
+            set_masked(&new_corners, get_masked(st.corners, 7), 3);
+            add_corner_rot(&new_corners, 1, 2);
+            add_corner_rot(&new_corners, 2, 3);
+            add_corner_rot(&new_corners, 2, 6);
+            add_corner_rot(&new_corners, 1, 7);
+            set_masked(&new_edges, get_masked(st.edges, 3), 6);
+            set_masked(&new_edges, get_masked(st.edges, 6), 11);
+            set_masked(&new_edges, get_masked(st.edges, 7), 3);
+            set_masked(&new_edges, get_masked(st.edges, 11), 7);
+            add_edge_rot(&new_edges, 1, 3);
+            add_edge_rot(&new_edges, 1, 6);
+            add_edge_rot(&new_edges, 1, 7);
+            add_edge_rot(&new_edges, 1, 11);
+            break;
+        case BP:
+            set_masked(&new_corners, get_masked(st.corners, 6), 2);
+            set_masked(&new_corners, get_masked(st.corners, 2), 3);
+            set_masked(&new_corners, get_masked(st.corners, 7), 6);
+            set_masked(&new_corners, get_masked(st.corners, 3), 7);
+            add_corner_rot(&new_corners, 1, 2);
+            add_corner_rot(&new_corners, 2, 3);
+            add_corner_rot(&new_corners, 2, 6);
+            add_corner_rot(&new_corners, 1, 7);
+            set_masked(&new_edges, get_masked(st.edges, 6), 3);
+            set_masked(&new_edges, get_masked(st.edges, 11), 6);
+            set_masked(&new_edges, get_masked(st.edges, 3), 7);
+            set_masked(&new_edges, get_masked(st.edges, 7), 11);
+            add_edge_rot(&new_edges, 1, 3);
+            add_edge_rot(&new_edges, 1, 6);
+            add_edge_rot(&new_edges, 1, 7);
+            add_edge_rot(&new_edges, 1, 11);
+            break;
+        case B2:
+            set_masked(&new_corners, get_masked(st.corners, 2), 7);
+            set_masked(&new_corners, get_masked(st.corners, 3), 6);
+            set_masked(&new_corners, get_masked(st.corners, 6), 3);
+            set_masked(&new_corners, get_masked(st.corners, 7), 2);
+            set_masked(&new_edges, get_masked(st.edges, 3), 11);
+            set_masked(&new_edges, get_masked(st.edges, 6), 7);
+            set_masked(&new_edges, get_masked(st.edges, 7), 6);
+            set_masked(&new_edges, get_masked(st.edges, 11), 3);
             break;
         default: return st;
     }
     return (cube_3_state_t) {.corners = new_corners, .edges = new_edges};
 }
 
+void add_corner_rot(uint64_t *dest, uint8_t rot, uint8_t ind) {
+    uint8_t curr_rot = (*dest >> (5 * ind + 3)) & 0b11;
+    uint8_t new_rot;
+    new_rot = (curr_rot + rot) % 3;
+    *dest = (*dest & (~(0b11l << (ind * 5 + 3)))) | (((uint64_t) new_rot) << (ind * 5 + 3));
+}
+
+void add_edge_rot(uint64_t *dest, uint8_t rot, uint8_t ind) {
+    uint8_t curr_rot = (*dest >> (5 * ind + 4)) & 0b1;
+    uint8_t new_rot;
+    new_rot = (curr_rot + rot) % 2;
+    *dest = (*dest & (~(0b1l << (ind * 5 + 4)))) | (((uint64_t) new_rot) << (ind * 5 + 4));
+}
+
 uint8_t get_masked(uint64_t n, uint8_t ind) {
-    return (n & (0b11111 << ind * 5)) >> ind * 5;
+    return (n & (0b11111l << ind * 5)) >> ind * 5;
 }
 
 void set_masked(uint64_t *dest, uint8_t val, uint8_t ind) {
-    print_binary64(*dest);
-    *dest = (*dest & (~(0b11111 << ind * 5))) | (val << ind * 5);
-    print_binary64(*dest);
+    *dest = (*dest & (~(0b11111l << ind * 5))) | (((uint64_t) val) << ind * 5);
 }
 
 int is_solved(cube_3_state_t state) {
@@ -137,20 +259,20 @@ void print_cube_3_state(cube_3_state_t st) {
     cs[14] = ctc(st, 3, 1);
     cs[15] = etc(st, 7, 1);
     cs[16] = ctc(st, 7, 2);
-    cs[17] = etc(st, 6, 1);
+    cs[17] = etc(st, 9, 1);
     cs[18] = etc(st, 1, 1);
     cs[19] = etc(st, 1, 0);
     cs[20] = etc(st, 2, 0);
     cs[21] = etc(st, 2, 1);
-    cs[22] = etc(st, 7, 1);
+    cs[22] = etc(st, 10, 1);
     cs[23] = ctc(st, 4, 2); 
-    cs[24] = etc(st, 9, 1);
+    cs[24] = etc(st, 4, 1);
     cs[25] = ctc(st, 0, 1);
     cs[26] = ctc(st, 0, 0);
     cs[27] = etc(st, 0, 0);
     cs[28] = ctc(st, 1, 0);
     cs[29] = ctc(st, 1, 2);
-    cs[30] = etc(st, 10, 1);
+    cs[30] = etc(st, 5, 1);
     cs[31] = ctc(st, 5, 1);
     cs[32] = ctc(st, 0, 2);
     cs[33] = etc(st, 0, 1);
